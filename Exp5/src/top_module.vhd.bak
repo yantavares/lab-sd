@@ -1,0 +1,34 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use IEEE.std_logic_arith.all;
+entity top_module is end;
+architecture main of top_module is
+component somador_palavras
+port (
+    a, b     :    in std_logic_vector(3 downto 0);
+    s    :    out std_logic_vector(4 downto 0)
+);
+end component;
+component somador_arith
+port (
+    a, b    :    in std_logic_vector(3 downto 0);
+    s    :    out std_logic_vector(4 downto 0)
+);
+end component;
+ 
+component tb is
+port (
+    s_dut, s_gm    :    in std_logic_vector(4 downto 0);
+    a, b        :       out std_logic_vector(3 downto 0)
+ 
+);
+end component;
+ 
+signal a, b   :     std_logic_vector (3 downto 0);
+signal s_dut, s_gm: std_logic_vector(4 downto 0);
+ 
+begin
+    U0: somador_palavras port map(a, b, s_dut);
+    U1: somador_arith port map(a, b, s_gm);
+    U2: tb port map(s_dut, s_gm, a, b);
+end main;

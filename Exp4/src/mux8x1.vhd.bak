@@ -1,0 +1,24 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity mux8_1 is
+    port(
+        a : in std_logic_vector(7 downto 0);
+        b : in std_logic_vector(2 downto 0);
+        c : out std_logic
+    );
+end mux8_1;
+
+architecture mux8_1_arc of multi8x1 is
+begin
+    c <= a(0) when (b = "000") else
+	 a(1) when (b = "001") else 
+	 a(2) when (b = "010") else 
+	 a(3) when (b = "011") else 
+	 a(4) when (b = "100") else 
+	 a(5) when (b = "101") else 
+	 a(6) when (b = "110") else 
+	 a(7) when (b = "111") else 'U';
+
+end mux8_1_arc;
